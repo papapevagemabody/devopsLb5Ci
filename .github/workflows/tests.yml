@@ -28,6 +28,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest httpx
+          pip install fastapi pytest httpx
 
       # Шаг для запуска тестов
       - name: Run tests
