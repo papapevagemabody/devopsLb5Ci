@@ -18,7 +18,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}   # Изменил на secrets
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Шаг для сборки и публикации образа на Docker Hub
@@ -26,4 +26,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/my-app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest   # Изменил на secrets
