@@ -45,7 +45,7 @@ def test_create_user_with_invalid_email():
     '''Создание пользователя с почтой, которую использует другой пользователь'''
     new_user = {"email": users[0]['email'], "name": "Another User"}
     response = client.post("/api/v1/user", json=new_user)
-    assert response.status_code == 400  # Ожидаем ошибку при создании с дублирующимся email
+    assert response.status_code == 409  # Ожидаем ошибку при создании с дублирующимся email
     assert response.json() == {"detail": "Email already in use"}  # Сообщение о том, что email уже занят
 
 
