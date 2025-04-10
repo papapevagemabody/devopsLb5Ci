@@ -29,6 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest httpx
           pip install fastapi pytest httpx
+          pip install -r requirements.txt
 
       # Шаг для запуска тестов
       - name: Run tests
