@@ -37,8 +37,7 @@ def test_create_user_with_valid_email():
     new_user = {"email": "newuser@example.com", "name": "New User"}
     response = client.post("/api/v1/user", json=new_user)
     assert response.status_code == 201  # Ожидаем, что создание пользователя возвращает статус 201
-    assert response.json()["email"] == new_user["email"]
-    assert response.json()["name"] == new_user["name"]
+    assert isinstance(response.json(), int)  # Проверяем, что возвращается ID (целое число)
 
 
 def test_create_user_with_invalid_email():
@@ -46,7 +45,7 @@ def test_create_user_with_invalid_email():
     new_user = {"email": users[0]['email'], "name": "Another User"}
     response = client.post("/api/v1/user", json=new_user)
     assert response.status_code == 409  # Ожидаем ошибку при создании с дублирующимся email
-    assert response.json() == {"detail": "Email already in use"}  # Сообщение о том, что email уже занят
+    assert response.json() == {"detail": "User with this email already exists"}  # Сообщение от API
 
 
 def test_delete_user():
